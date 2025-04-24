@@ -1,0 +1,35 @@
+Room.cs
+
+public class Room
+{
+public string _rooName;
+public string description;
+public enterRoomDescription;
+}
+
+public Room(string roomName)
+{
+_roomName = roomName;
+}
+}
+--------------------------------
+
+TextGame.cs
+public class TextGame
+{
+	private Room _currentRoom;
+
+	public void InitialzeGame()
+{
+Room mainHallway = new Room("Main Hallway");
+mainHallway.description = "You are in a large hallway with" + "the front door closed behind you.";
+main.enterRoomDescription = "you enter an elegant grand hallway.";
+
+_currentRoom = mainHallway;
+}
+
+}
+
+---------------------------------
+
+Program.cs

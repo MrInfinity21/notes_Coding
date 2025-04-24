@@ -1,0 +1,17 @@
+Unity 2D top down demo game.
+
+add -> 2d Objects -> Player
+
+right click under assests -> drag all the sprites(.png files)
+			|
+			|
+right click create -> new folder -> name it assests
+
+
+right click create-> new folder -> name it scripts
+
+open scripts file (Default: Rider )
+
+
+
+	

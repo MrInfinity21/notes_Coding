@@ -1,0 +1,91 @@
+
+
+int[] Array = new int[] {1, 2, 3, 4, 5, 6, 7 };
+
+string[] newArray = new string[5];
+
+newArray[0] = "Kind";
+newArray[1] = "Good";
+newArray[2] = "Bad";
+newArray[3] = "Worse";
+newArray[4] = "Null";
+
+for (int i = 0; i < Array.Length; i++)
+{
+    Console.WriteLine(newArray[i]);
+}
+
+ChessPiece[,] chessBoard = new ChessPiece[8, 8];
+
+for (int x = 0; x < 8; x++)
+{
+    for (int y = 0; y < 8; y++)
+    {
+        chessBoard[x, y] = ChessPiece.Pawn;
+        Console.WriteLine(chessBoard[x, y]);
+    }
+}
+
+chessBoard[0, 0] = ChessPiece.Rook;
+public enum ChessPiece
+{
+    Pawn = 0,
+    Rook = 1,
+    Knight = 2,
+    Bishop = 3,
+    Queen = 4,
+    King = 5,
+    Blank = 6
+};
+//Console.WriteLine(ChessPiece.Rook);
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+While Loop
+-----------
+bool playingDiceGame = true;
+int numberOfRolls = 0;
+
+while (playingDiceGame)
+{
+    int randomNumber = new Random().Next(1, 15);
+    numberOfRolls++;
+    Console.WriteLine("Rolled a:" + randomNumber);
+
+
+    if (randomNumber == 10)
+    {
+        Console.WriteLine("You rolled 10s after: " + numberOfRolls + " ");
+        playingDiceGame = false;
+    }
+}
+
+---------------------------------------------------------------------------------
+
+Do Loop
+--------
+
+
+bool playingDiceGame = true;
+int numberOfRolls = 0;
+
+do 
+{
+    int randomNumber = new Random().Next(1, 15);
+    numberOfRolls++;
+    Console.WriteLine("Rolled a:" + randomNumber);
+
+
+    if (randomNumber == 10)
+    {
+        playingDiceGame = false;
+    }
+}while(playingDiceGame);
+
+Console.WriteLine("You rolled 10s after: " + numberOfRolls + "rolls");
+
+

@@ -1,0 +1,45 @@
+int number = 1;
+string descriptions;
+float decimalNumber = 1.5f;
+
+if(number < decimalNumber)
+{
+int temp = number;	
+Console.WriteLine("This code was in fact, true");
+}
+
+Console.Write(temp);
+
+
+
+
+
+
+
+
+
+
+
+// Generate a random number from 1 - 100
+// Ask a player to enter a number with this range in mind
+// check to see if the guess was correct
+// check if number is too high or too low
+// display result of 
+
+
+
+
+
+Link is given a certain amount of rupees.
+
+We are to return the amount of Silver/Purple/Red/yellow/Blue and Green rupees as a return.
+
+in groups of 3 work together to figure out how to make this work.
+hint: the % modulus operator can be useful for returning a remainder.
+silver = 100, purple = 50, red = 20, yellow=10, blue=5, green=1
+example:28 rupees will return a red, blue and 3 green rupees.
+
+
+
+
+

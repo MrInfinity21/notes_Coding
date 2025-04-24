@@ -1,0 +1,220 @@
+    /// <summary>
+    /// Represents a weapon with a name and damage value.
+    /// </summary>
+    public class Weapon
+    {
+        /// <summary>
+        /// Gets or sets the name of the weapon.
+        /// </summary>
+        public string Name { get; set; }
+    
+        /// <summary>
+        /// Gets or sets the damage value of the weapon.
+        /// </summary>
+        public int Damage { get; set; }
+    
+        /// <summary>
+        /// A static instance of Random used to generate random attack values.
+        /// </summary>
+        private static Random random = new Random();
+    
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Weapon"/> class with the specified name and damage.
+        /// </summary>
+        /// <param name="name">The name of the weapon.</param>
+        /// <param name="damage">The damage value of the weapon.</param>
+        public Weapon(string name, int damage)
+        {
+            Name = name;
+            Damage = damage;
+        }
+    
+        /// <summary>
+        /// Simulates an attack with the weapon, generating a random damage value between 1 and the weapon's damage value.
+        /// </summary>
+        /// <returns>A random damage value between 1 and the weapon's damage value.</returns>
+        public int Attack()
+        {
+            return random.Next(1, Damage + 1);
+        }
+    }
+    /// <summary>
+    /// Represents a character with a name, health, and a weapon.
+    /// </summary>
+    public class Character
+    {
+        /// <summary>
+        /// Gets or sets the name of the character.
+        /// </summary>
+        public string Name { get; set; }
+    
+        /// <summary>
+        /// Gets or sets the health of the character. Default is 100.
+        /// </summary>
+        public int Health { get; set; } = 100;
+    
+        /// <summary>
+        /// Gets or sets the weapon of the character.
+        /// </summary>
+        public Weapon Weapon { get; set; }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Character"/> class with the specified name and weapon.
+        /// </summary>
+        /// <param name="name">The name of the character.</param>
+        /// <param name="weapon">The weapon of the character.</param>
+        public Character(string name, Weapon weapon)
+        {
+            Name = name;
+            Weapon = weapon;
+        }
+    }
+    /// <summary>
+    /// Represents an enemy with a name and health value.
+    /// </summary>
+    public class Enemy
+    {
+        /// <summary>
+        /// Gets or sets the name of the enemy.
+        /// </summary>
+        public string Name { get; set; }
+    
+        /// <summary>
+        /// Gets or sets the health of the enemy.
+        /// </summary>
+        public int Health { get; set; }
+    
+        /// <summary>
+        /// A static instance of Random used to generate random attack values.
+        /// </summary>
+        private static Random random = new Random();
+    
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Enemy"/> class with the specified name and health.
+        /// </summary>
+        /// <param name="name">The name of the enemy.</param>
+        /// <param name="health">The health value of the enemy.</param>
+        public Enemy(string name, int health)
+        {
+            Name = name;
+            Health = health;
+        }
+    
+        /// <summary>
+        /// Simulates an attack by the enemy, generating a random damage value between 1 and 8.
+        /// </summary>
+        /// <returns>A random damage value between 1 and 8.</returns>
+        public int Attack()
+        {
+            return random.Next(1, 9);
+        }
+    }
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("Enter your brave hero's name:");
+        string characterName = Console.ReadLine();
+        
+        Console.WriteLine("\nChoose your weapon:");
+        Console.WriteLine("1. Sword of Dusquene (Damage: 10)");
+        Console.WriteLine("2. Axe of Bashing and Bleeding (Damage: 12)");
+        Console.WriteLine("3. Elven Longbow of Truth (Damage: 8)");
+        
+        int weaponChoice = int.Parse(Console.ReadLine());
+        Weapon chosenWeapon;
+        switch (weaponChoice)
+        {
+            case 1:
+                chosenWeapon = new Weapon("Sword of Dusquene", 10);
+                break;
+            case 2:
+                chosenWeapon = new Weapon("Axe of Bashing and Bleeding", 12);
+                break;
+            case 3:
+                chosenWeapon = new Weapon("Elven Longbow of Truth", 8);
+                break;
+            default:
+                Console.WriteLine("Invalid choice! Defaulting to Sword of Dusquene.");
+                chosenWeapon = new Weapon("Sword of Dusquene", 10);
+                break;
+        }
+        
+        Character hero = new Character(characterName, chosenWeapon);
+        Enemy ork = new Enemy("Ork", 90);
+        
+        int potions = 3;
+        
+        Console.WriteLine("As darkness creeps beneath your feet, you stand atop a rocky hill facing out from the cliff side, watching the setting sun. Suddenly, a growl breaks the peaceful silence as you hear rustling from the thick treeline.");
+        Console.WriteLine("You slide down the rocky hill, small pebbles flying into the air as your feet push them out of your way.");
+        Console.WriteLine("You scour the treeline to try and find the source of the noise to no avail until the rustling noise grows louder and louder.");
+        Console.WriteLine("Out of the shadows of the dead trees, an Ork emerges, pushing the dead branches aside, its massive form shadowing over you as it steps closer with a red oozing slash across its chest, its eyes locked onto you.");
+        Console.WriteLine("The Ork brandishes two serrated axes covered in blood and guts.");
+        Console.WriteLine($"You pull out your {hero.Weapon.Name} and hold it tightly, ready for the coming battle.");
+        
+        while (hero.Health > 0 && ork.Health > 0)
+        {
+            Console.WriteLine($"\n{hero.Name} Health: {hero.Health}, Ork Health: {ork.Health}");
+            Console.WriteLine($"Health Potions left: {potions}");
+            
+            Console.WriteLine("\nWhat do you do?:");
+            Console.WriteLine("1. Attack");
+            Console.WriteLine("2. Run Away");
+            Console.WriteLine("3. Drink a Potion");
+
+            string choice = Console.ReadLine();
+            
+            if (choice == "1")
+            {
+                int heroDamage = hero.Weapon.Attack();
+                ork.Health -= heroDamage;
+                if (ork.Health < 0)
+                    ork.Health = 0;
+                Console.WriteLine($"{hero.Name} attacks to deal {heroDamage} damage. The Ork's health has dropped to {ork.Health}.");
+                
+                if (ork.Health > 0)
+                {
+                    int orkDamage = ork.Attack();
+                    hero.Health -= orkDamage;
+                    Console.WriteLine($"The Ork attacks to deal {orkDamage} damage. {hero.Name}'s health has fallen to {hero.Health}.");
+                }
+            }
+             else if (choice == "2")
+             {
+                 Console.WriteLine($"{hero.Name} decides to run away. The battle is finished. (Chicken!!!) ");
+                 break;
+             }
+             else if (choice == "3" && potions > 0)
+             {
+                 int healAmount = new Random().Next(1, 11);
+                 hero.Health += healAmount;
+                 
+                 if (hero.Health > 100)
+                 {
+                     hero.Health = 100;
+                 }
+ 
+                 potions--;
+                 Console.WriteLine($"{hero.Name} drinks a health potion and heals for {healAmount} health. {hero.Name}'s health has risen to {hero.Health}.");
+             }
+             else if (choice == "3" && potions <= 0)
+             {
+                 Console.WriteLine($"{hero.Name} tries to drink a health potion, but has no health potions left!");
+             }
+             else
+             {
+                 Console.WriteLine("Invalid choice! Please select 1 to attack, 2 to run away, or 3 to drink a health potion.");
+             }
+         }
+         
+         if (hero.Health <= 0)
+         {
+             Console.WriteLine($"{hero.Name} has been defeated by the Ork. :( ");
+         }
+         else if (ork.Health <= 0)
+         {
+             Console.WriteLine($"{hero.Name} has defeated the Ork! (Hoooraayy!) ");
+         }
+     }
+ }

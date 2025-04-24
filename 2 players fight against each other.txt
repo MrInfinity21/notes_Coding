@@ -1,0 +1,7 @@
+2 players fight against each other using a class
+
+different stats for attack, defense and speed
+
+Create an AI for a player to fight against 
+
+hint use objects properties and methods so you use anynumber of pokemon!!!!

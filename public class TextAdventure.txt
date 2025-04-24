@@ -1,0 +1,21 @@
+public class TextAdventure
+{
+//where the player is currently
+// will need rooms for the player to explore
+// player will need inventory to check
+// inventory will have a list of items
+// rooms will also have items within them
+
+add class room
+
+public class Room
+{
+	public string roomName;
+	public string roomDescription;
+	public string investigation;
+// description
+// available door ways
+// investigation description
+// List of items
+
+}
